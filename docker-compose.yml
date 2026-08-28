@@ -1,0 +1,63 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: pqrs_postgres_vector
+    restart: always
+    environment:
+      POSTGRES_DB: pqrs_saas
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_vector_data:/var/lib/postgresql/data
+    networks:
+      - pqrs_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d pqrs_saas"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pqrs_backend_api
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=pqrs_saas;Username=postgres;Password=postgrespassword;
+      - Jwt__SecretKey=super_secret_pqrs_saas_jwt_key_2026_modern_production_default!
+      - Jwt__Issuer=PlataformaSaaS.Api
+      - Jwt__Audience=PlataformaSaaS.Clients
+      - Gemini__ApiKey=${GEMINI_API_KEY}
+      - Gemini__EmbeddingModel=gemini-embedding-001
+      - Gemini__ChatModel=gemini-flash-lite-latest
+    ports:
+      - "5050:8080"
+    networks:
+      - pqrs_network
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pqrs_frontend_app
+    restart: always
+    ports:
+      - "3000:80"
+    networks:
+      - pqrs_network
+    depends_on:
+      - backend
+
+networks:
+  pqrs_network:
+    driver: bridge
+
+volumes:
+  postgres_vector_data:
