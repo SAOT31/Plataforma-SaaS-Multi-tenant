@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+  </defs>
+  <!-- Rounded Squircle Background -->
+  <rect width="48" height="48" rx="12" fill="url(#brandGrad)" />
+  
+  <!-- Robot/AI Support Icon in pure white -->
+  <!-- Antennas / Sparkle Top -->
+  <circle cx="24" cy="11" r="2.5" fill="#FFFFFF" />
+  <rect x="22.5" y="12.5" width="3" height="4" rx="1.5" fill="#FFFFFF" />
+  
+  <!-- Head -->
+  <rect x="11" y="16" width="26" height="18" rx="6" fill="#FFFFFF" />
+  
+  <!-- Eyes -->
+  <rect x="16" y="21" width="4.5" height="5.5" rx="2.25" fill="#6366F1" />
+  <rect x="27.5" y="21" width="4.5" height="5.5" rx="2.25" fill="#6366F1" />
+  
+  <!-- Subtle Smile / Interface bar -->
+  <rect x="19" y="29.5" width="10" height="2" rx="1" fill="#6366F1" />
+  
+  <!-- Ear Nodes -->
+  <rect x="8" y="21" width="3" height="8" rx="1.5" fill="#FFFFFF" opacity="0.8" />
+  <rect x="37" y="21" width="3" height="8" rx="1.5" fill="#FFFFFF" opacity="0.8" />
+  
+  <!-- Subtle Sparkle Accent -->
+  <path d="M37 9L38 12L41 13L38 14L37 17L36 14L33 13L36 12L37 9Z" fill="#FBBF24" />
+</svg>
