@@ -1,0 +1,7 @@
+pqrssergio.jaramc.dev {
+    reverse_proxy localhost:3000
+}
+
+http://localhost {
+    reverse_proxy localhost:3000
+}

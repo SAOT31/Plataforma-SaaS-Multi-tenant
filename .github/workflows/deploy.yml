@@ -16,14 +16,21 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PASSWORD }}
+          host: "161.97.136.42"
+          username: "sergio"
+          key: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+            b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+            QyNTUxOQAAACCS/JDD7DBwBfe93B+Wrej2oUOjzvdaIRH41zo4eMr6twAAAJiZDE+MmQxP
+            jAAAAAtzc2gtZWQyNTUxOQAAACCS/JDD7DBwBfe93B+Wrej2oUOjzvdaIRH41zo4eMr6tw
+            AAAEBm8gEm7SrW0r/Jne0eTnf22T64Sx6evPS2Uux6ywaBTJL8kMPsMHAF973cH5at6Pah
+            Q6PO91ohEfjXOjh4yvq3AAAAEXNlcmdpb0B2bWkzMjQwNjQwAQIDBA==
+            -----END OPENSSH PRIVATE KEY-----
           script: |
-            if [ ! -d "/home/${{ secrets.VPS_USERNAME }}/Plataforma-SaaS-Multi-tenant" ]; then
-              git clone https://github.com/SAOT31/Plataforma-SaaS-Multi-tenant.git /home/${{ secrets.VPS_USERNAME }}/Plataforma-SaaS-Multi-tenant
+            if [ ! -d "/home/sergio/Plataforma-SaaS-Multi-tenant" ]; then
+              git clone https://github.com/SAOT31/Plataforma-SaaS-Multi-tenant.git /home/sergio/Plataforma-SaaS-Multi-tenant
             fi
-            cd /home/${{ secrets.VPS_USERNAME }}/Plataforma-SaaS-Multi-tenant
+            cd /home/sergio/Plataforma-SaaS-Multi-tenant
             git fetch --all
             git reset --hard origin/main
             
